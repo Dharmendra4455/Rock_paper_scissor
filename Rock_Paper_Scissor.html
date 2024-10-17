@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    .maincontainer{
+        height: 30vw;
+        width: 60vw;
+        border: 3px solid rgba(138, 136, 136, 0.719);
+    }
+    .container{
+        height: 20vw;
+        width: 60vw;
+        justify-content: center;
+        display: flex;
+        /*border: 3px solid rgba(138, 141, 139, 0);*/
+    }
+    .item{
+        margin-top: 120vw;
+        align-items: 3vw;
+        margin: 2vw;
+        height: 11vw;
+        width: 11vw;
+        border: 2px dotted purple;
+        border-radius: 50%;
+      /*background-color: rgba(97, 95, 102, 0.678);*/
+    }
+   #rock img {
+       
+        height: 9vw;
+        margin: .7vw;
+        
+    }
+    #rock:hover{
+        border: 2px solid rgb(252, 3, 239);
+       
+    }
+     #paper img{
+        height: 10vw;
+        margin: .7vw;
+    }
+    #paper:hover{
+        border: 2px solid rgb(252, 3, 239);
+    }
+    #scissor img{
+        height: 10vw;
+        margin: .7vw;
+    }
+    #scissor:hover{
+        border: 2px solid rgb(252, 3, 239);
+    }
+    .win{
+        visibility: hidden;
+    }
+</style>
+<div class="maincontainer">
+  <div class="container">
+    <div style="margin-top: 7vw;" id="rock"    class="item"><img src="rockpaperscissor/rock-emoji.png" alt=""></div>
+    <div style="margin-top: 7vw;" id="paper"   class="item"><img src="rockpaperscissor/paper-emoji.png" alt=""></div>
+    <div style="margin-top: 7vw;" id="scissor" class="item"><img src="rockpaperscissor/scissors-emoji.png" alt=""></div>
+   
+
+
+</div>
+<div>
+<div style="font-size: 1.6vw;margin-left: 8vw; display: inline-block; margin-top: 2vw;">You:<span class="you"> Null</span></div>
+<div style="font-size: 1.6vw;margin-left: 13vw; display: inline-block; margin-top: 2vw;" class="win">You win!</div>
+<div style="font-size: 1.6vw;margin-right: 8vw; display: inline-block; float:right; margin-top: 2vw;">Computer:<span class="computer"> Null</span></div>
+</div>
+<div  style="font-size: 1.6vw; margin-left: 8vw;display: inline-block;"> Score: 0</div>
+<div style="font-size: 1.6vw;margin-right: 10vw; display: inline-block; float:right;">Score:0</div>
+</div>
+    <script>
+       var compkey=0,personkey=0;
+       var item=document.querySelector(".item")
+       var rock=document.querySelector("#rock")
+       var paper=document.querySelector("#paper")
+       var scissor=document.querySelector("#scissor")
+       var you=document.querySelector(".you")
+       var comp=document.querySelector(".computer")
+       
+       // compkey=Math.floor((Math.random()*3));
+      // alert(compkey)
+       
+        rock.addEventListener("click", ()=>{
+        scissor.style.backgroundColor="white"
+        paper.style.backgroundColor="white"
+        rock.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+        you.innerHTML=" Rock";
+        you.style.color="blue";
+         personkey=0;
+        compkey=Math.floor((Math.random()*3));
+       })
+      
+       paper.addEventListener("click",()=>{
+        rock.style.backgroundColor="white"
+        scissor.style.backgroundColor="white"
+        paper.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+        you.innerHTML=" Paper"
+        you.style.color="blue"
+        personkey=1
+        return personkey
+       
+       })
+       scissor.addEventListener("click",()=>{
+        rock.style.backgroundColor="white"
+        paper.style.backgroundColor="white"
+        scissor.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+        you.innerHTML=" Scissor"
+        you.style.color="blue"
+        personkey=2
+        return personkey
+       })
+       console.log(personkey)
+      if(compkey==personkey)
+      {
+        comp.innerHTML="Rock"
+      }
+      else if(compkey==p)
+      {
+        comp.innerHTML="Paper"
+      }
+      else if(compkey==2)
+      {
+        comp.innerHTML="Scissor"
+      }
+     
+    
+    </script>
+</body>
+</html>
