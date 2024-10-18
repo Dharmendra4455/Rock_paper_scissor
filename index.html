@@ -9,16 +9,17 @@
 <style>
     .maincontainer{
         height: 30vw;
-        width: 60vw;
-        border: 3px solid rgba(138, 136, 136, 0.719);
-      /*  background-color: rgb(243, 199, 4);*/
-    }
+        width: 70vw;
+        border: 5px solid rgba(138, 136, 136, 0.719);
+      
+        background-image: url("https://media2.giphy.com/media/U3qYN8S0j3bpK/giphy.webp?cid=ecf05e47qvudodwjm40woqx7rm3dxxazw322ddeuaz9qzy8e&ep=v1_gifs_related&rid=giphy.webp&ct=g");
+    } 
     .container{
         height: 20vw;
-        width: 60vw;
+        width: 70vw;
         justify-content: center;
         display: flex;
-        /*border: 3px solid rgba(138, 141, 139, 0);*/
+        /*border: 3px solid rgba(248, 152, 9, 0);*/
     }
     .item{
         margin-top: 120vw;
@@ -59,7 +60,10 @@
         visibility: hidden;
     }
 </style>
+<h1 style="margin-bottom: 0px; font-weight: bold;">ROCK PAPER SCISSOR</h1>
 <div class="maincontainer">
+  <div class="welcome" style="color: white; font-size: 18px; font-weight: bold; display: inline-block;">Hello</div>
+  <div class="game" style="color: white; font-size: 18px; font-weight: bold; display: inline-block;float: right;margin-right: 2vw;">Game: 0</div>
   <div class="container">
     <div style="margin-top: 7vw;" id="rock"    class="item"><img src="rockpaperscissor/rock-emoji.png" alt=""></div>
     <div style="margin-top: 7vw;" id="paper"   class="item"><img src="rockpaperscissor/paper-emoji.png" alt=""></div>
@@ -69,15 +73,23 @@
 
 </div>
 <div>
-<div style="font-size: 1.6vw;margin-left: 8vw; display: inline-block; margin-top: 2vw;">You:<span class="you"> Null</span></div>
-<div style="font-size: 1.6vw;margin-left: 13vw; display: inline-block; margin-top: 2vw;" class="win">You win!</div>
-<div style="font-size: 1.6vw;margin-right: 8vw; display: inline-block; float:right; margin-top: 2vw;">Computer:<span class="computer"> Null</span></div>
+<div style="font-size: 1.6vw;margin-left: 8vw; display: inline-block; margin-top: 2vw;color: white;">You:<span class="you"> Null</span></div>
+<div style="font-size: 1.6vw;margin-left: 13vw; display: inline-block; margin-top: 2vw;color: white;" class="win" >You win!</div>
+<div style="font-size: 1.6vw;margin-right: 8vw; display: inline-block; float:right; margin-top: 2vw;color: white;">Computer:<span style="color: rgb(243, 97, 12);" class="computer"> Null</span></div>
 </div>
-<div  style="font-size: 1.6vw; margin-left: 8vw;display: inline-block;" class="personscore"> Score: 0</div>
-<div style="font-size: 1.6vw;margin-right: 10vw; display: inline-block; float:right;" class="computerscore">Score:0</div>
+<div  style="font-size: 1.6vw; margin-left: 8vw;display: inline-block;color: white;" class="personscore"> Score: 0</div>
+<div style="font-size: 1.6vw;margin-right: 10vw; display: inline-block; float:right;color: white;" class="computerscore">Score:0</div>
 </div>
+<div class="your_score" style="font-size: 1.5vw;margin-top: 2vw;font-weight: bold; visibility: hidden;">Your Score :</div>
+<div class="comp_score" style="font-size: 1.5vw; font-weight: bold;visibility: hidden;">Computer Score :</div>
+<div style="font-size: 1.8vw;font-weight: bold;margin-left: 15vw; visibility: hidden;" class="showwin">YOU WIN!!</div>
     <script>
-       var compkey=0,personkey=0,pscore=0,cscore=0;
+      
+       var compkey=0,personkey=0,pscore=0,cscore=0 ,count=0;
+       var name=prompt("Enter Your Name:");
+       var game=document.querySelector(".game")
+       if(name!=null)
+       var name=document.querySelector(".welcome").innerHTML="Welcome "+name
        var winloos=document.querySelector(".win")
        var rock=document.querySelector("#rock")
        var paper=document.querySelector("#paper")
@@ -87,39 +99,48 @@
        var computerscore=document.querySelector(".computerscore")
        var personscore=document.querySelector(".personscore") 
    
-      
-      // alert(compkey)
        
-        rock.addEventListener("click", ()=>
+       
+       rock.addEventListener("click", ()=>
         {
-         scissor.style.backgroundColor="white"
-         paper.style.backgroundColor="white"
-         rock.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+         scissor.style.backgroundColor="transparent"
+         paper.style.backgroundColor="transparent"
+         rock.style.backgroundColor="white"
          you.innerHTML=" Rock";
-         you.style.color="blue";
+         you.style.color="yellow";
+         count++;
+         game.innerHTML="Game: "+count;
          
-         playgame(0)
+          playgame(0,count)
        
         })
       
         paper.addEventListener("click",()=>
         {
-         rock.style.backgroundColor="white"
-         scissor.style.backgroundColor="white"
-         paper.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+         rock.style.backgroundColor="transparent"
+         scissor.style.backgroundColor="transparent"
+         paper.style.backgroundColor="white"
          you.innerHTML=" Paper"
-         you.style.color="blue"
-         playgame(1)
+         you.style.color="yellow"
+         count++;
+         game.innerHTML="Game: "+count;
+         
+          playgame(1,count)
+         
         })
         scissor.addEventListener("click",()=>
         {
-         rock.style.backgroundColor="white"
-         paper.style.backgroundColor="white"
-         scissor.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+         rock.style.backgroundColor="transparent"
+         paper.style.backgroundColor="transparent"
+         scissor.style.backgroundColor="white"
          you.innerHTML=" Scissor"
-         you.style.color="blue"
-         playgame(2)
+         you.style.color="yellow"
+         count++;
+         game.innerHTML="Game: "+count;
+        
+          playgame(2,count)
         })
+       
         function compkeygenerator()
         {
             compkey= Math.floor((Math.random()*3));
@@ -137,8 +158,9 @@
             }
             return compkey;
         }
-        function playgame(personkey)
-        {
+        function playgame(personkey,count)
+        {  
+            
             compkey=compkeygenerator()
             //console.log(compkey)
             if(personkey==compkey)
@@ -211,14 +233,30 @@
                 else
                 personscore.innerHTML="Score:" +pscore
            }
+           if(count%10==0)
+            link(pscore,cscore,count)
         }
-
-
-
-          
-      
-     
-    
+      function link(pscore,cscore,count){
+        document.querySelector(".your_score").style.visibility="visible"
+        document.querySelector(".comp_score").style.visibility="visible"
+        document.querySelector(".showwin").style.visibility="visible"
+        document.querySelector(".your_score").innerHTML="Your Score :"+pscore
+        document.querySelector(".comp_score").innerHTML="Computer Score :"+cscore
+        if(pscore>cscore)
+        {
+         document.querySelector(".showwin").innerHTML="You WIN!"
+         document.querySelector(".showwin").style.color='green'
+        } 
+        else if(pscore<cscore)
+        {
+          document.querySelector(".showwin").innerHTML="You LOOSE!"
+          document.querySelector(".showwin").style.color='red'
+        }
+        else{
+          document.querySelector(".showwin").innerHTML="MATCH TIE!"
+          document.querySelector(".showwin").style.color='rgba(248, 152, 9, 0)'
+        }
+      }
     </script>
 </body>
 </html>
