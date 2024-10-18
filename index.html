@@ -11,6 +11,7 @@
         height: 30vw;
         width: 60vw;
         border: 3px solid rgba(138, 136, 136, 0.719);
+      /*  background-color: rgb(243, 199, 4);*/
     }
     .container{
         height: 20vw;
@@ -52,6 +53,7 @@
     }
     #scissor:hover{
         border: 2px solid rgb(252, 3, 239);
+      
     }
     .win{
         visibility: hidden;
@@ -71,63 +73,150 @@
 <div style="font-size: 1.6vw;margin-left: 13vw; display: inline-block; margin-top: 2vw;" class="win">You win!</div>
 <div style="font-size: 1.6vw;margin-right: 8vw; display: inline-block; float:right; margin-top: 2vw;">Computer:<span class="computer"> Null</span></div>
 </div>
-<div  style="font-size: 1.6vw; margin-left: 8vw;display: inline-block;"> Score: 0</div>
-<div style="font-size: 1.6vw;margin-right: 10vw; display: inline-block; float:right;">Score:0</div>
+<div  style="font-size: 1.6vw; margin-left: 8vw;display: inline-block;" class="personscore"> Score: 0</div>
+<div style="font-size: 1.6vw;margin-right: 10vw; display: inline-block; float:right;" class="computerscore">Score:0</div>
 </div>
     <script>
-       var compkey=0,personkey=0;
-       var item=document.querySelector(".item")
+       var compkey=0,personkey=0,pscore=0,cscore=0;
+       var winloos=document.querySelector(".win")
        var rock=document.querySelector("#rock")
        var paper=document.querySelector("#paper")
        var scissor=document.querySelector("#scissor")
        var you=document.querySelector(".you")
        var comp=document.querySelector(".computer")
-       
-       // compkey=Math.floor((Math.random()*3));
+       var computerscore=document.querySelector(".computerscore")
+       var personscore=document.querySelector(".personscore") 
+   
+      
       // alert(compkey)
        
-        rock.addEventListener("click", ()=>{
-        scissor.style.backgroundColor="white"
-        paper.style.backgroundColor="white"
-        rock.style.backgroundColor="rgba(97, 95, 102, 0.678)"
-        you.innerHTML=" Rock";
-        you.style.color="blue";
-         personkey=0;
-        compkey=Math.floor((Math.random()*3));
-       })
-      
-       paper.addEventListener("click",()=>{
-        rock.style.backgroundColor="white"
-        scissor.style.backgroundColor="white"
-        paper.style.backgroundColor="rgba(97, 95, 102, 0.678)"
-        you.innerHTML=" Paper"
-        you.style.color="blue"
-        personkey=1
-        return personkey
+        rock.addEventListener("click", ()=>
+        {
+         scissor.style.backgroundColor="white"
+         paper.style.backgroundColor="white"
+         rock.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+         you.innerHTML=" Rock";
+         you.style.color="blue";
+         
+         playgame(0)
        
-       })
-       scissor.addEventListener("click",()=>{
-        rock.style.backgroundColor="white"
-        paper.style.backgroundColor="white"
-        scissor.style.backgroundColor="rgba(97, 95, 102, 0.678)"
-        you.innerHTML=" Scissor"
-        you.style.color="blue"
-        personkey=2
-        return personkey
-       })
-       console.log(personkey)
-      if(compkey==personkey)
-      {
-        comp.innerHTML="Rock"
-      }
-      else if(compkey==p)
-      {
-        comp.innerHTML="Paper"
-      }
-      else if(compkey==2)
-      {
-        comp.innerHTML="Scissor"
-      }
+        })
+      
+        paper.addEventListener("click",()=>
+        {
+         rock.style.backgroundColor="white"
+         scissor.style.backgroundColor="white"
+         paper.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+         you.innerHTML=" Paper"
+         you.style.color="blue"
+         playgame(1)
+        })
+        scissor.addEventListener("click",()=>
+        {
+         rock.style.backgroundColor="white"
+         paper.style.backgroundColor="white"
+         scissor.style.backgroundColor="rgba(97, 95, 102, 0.678)"
+         you.innerHTML=" Scissor"
+         you.style.color="blue"
+         playgame(2)
+        })
+        function compkeygenerator()
+        {
+            compkey= Math.floor((Math.random()*3));
+            if(compkey==0)
+            {
+                comp.innerHTML="Rock"
+            }
+            else if(compkey==1)
+            {
+               comp.innerHTML="Paper"
+            }
+             else if(compkey==2)
+            {
+               comp.innerHTML="Scissor"
+            }
+            return compkey;
+        }
+        function playgame(personkey)
+        {
+            compkey=compkeygenerator()
+            //console.log(compkey)
+            if(personkey==compkey)
+            {
+               winloos.innerHTML="Match Tie!"
+               winloos.style.color="rgb(243, 199, 4)" 
+               winloos.style.visibility="visible"  
+            }
+            else if(personkey==0 && compkey==2)
+           {    pscore++;
+                winloos.innerHTML="You Win!"
+                winloos.style.color="green" 
+                winloos.style.visibility="visible"  
+                if(pscore<10)
+                personscore.innerHTML="Score: 0" +pscore
+                else
+                personscore.innerHTML="Score:" +pscore
+
+                //console.log(pscore)
+           }
+           else if(personkey==0 && compkey==1)
+           {    cscore++;
+                winloos.innerHTML="You Loose!"
+                winloos.style.color="red" 
+                winloos.style.visibility="visible" 
+                if(cscore<10)
+                computerscore.innerHTML="Score: 0" +cscore 
+                else
+                computerscore.innerHTML="Score:" +cscore   
+           }
+           else if(personkey==1 && compkey==0)    
+           {    pscore++
+                winloos.innerHTML="You Win!"
+                winloos.style.color="green" 
+                winloos.style.visibility="visible" 
+                if(pscore<10) 
+                personscore.innerHTML="Score: 0" +pscore
+                else
+                personscore.innerHTML="Score:" +pscore
+
+           }
+            else if(personkey==1 && compkey==2)
+            {     cscore++;
+                  winloos.innerHTML="You Loose!"
+                  winloos.style.color="red" 
+                  winloos.style.visibility="visible"  
+                  if(cscore<10)
+                   computerscore.innerHTML="Score: 0" +cscore 
+                  else
+                  computerscore.innerHTML="Score:" +cscore  
+
+            }
+           else if(personkey==2 && compkey==0)
+           {    cscore++;
+                winloos.innerHTML="You Loose!"
+                winloos.style.color="red" 
+                winloos.style.visibility="visible" 
+                if(cscore<10)
+                computerscore.innerHTML="Score: 0" +cscore 
+                else
+                computerscore.innerHTML="Score:" +cscore  
+           }
+           else if(personkey==2 && compkey==1)
+           {    pscore++;
+                winloos.innerHTML="You Win!"
+                winloos.style.color="green" 
+                winloos.style.visibility="visible" 
+                if(pscore<10)
+                personscore.innerHTML="Score: 0" +pscore 
+                else
+                personscore.innerHTML="Score:" +pscore
+           }
+        }
+
+
+
+          
+      
      
     
     </script>
